@@ -1,12 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import { Home } from './templates/Home'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import { Home } from "./templates/Home";
 
 function App() {
-
-  return (
-   <Home></Home>
-  )
+  return <Home></Home>;
 }
 
-export default App
+export default App;
