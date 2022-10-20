@@ -3,8 +3,27 @@ import Templogo from "../assets/logo.svg";
 import { Header } from "../components/Header";
 import "./style.css";
 
+type PedidoProps = {
+  os: number;
+  empresa: { id: number; nome: string };
+  itens: { descricao: string; quantidade: number }[];
+};
+
+const pedidos: PedidoProps[] = [
+  {
+    os: 1,
+    empresa: { id: 1, nome: "aaa" },
+    itens: [
+      {
+        descricao: "item 1",
+        quantidade: 1,
+      },
+    ],
+  },
+];
+
 export const Home = () => {
-  const [pedido, setPedido] = useState();
+  const [pedido, setPedido] = useState<PedidoProps[]>();
   return (
     <>
       <Header />
@@ -32,6 +51,14 @@ export const Home = () => {
                   <th>Empresa</th>
                 </tr>
               </thead>
+              <tbody>
+                {pedidos.map((valor, key) => (
+                  <tr key={key}>
+                    <td>{valor.os}</td>
+                    <td>{valor.empresa.nome}</td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </section>
