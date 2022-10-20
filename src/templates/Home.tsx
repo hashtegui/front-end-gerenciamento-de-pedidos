@@ -10,14 +10,30 @@ export const Home = () => {
       <Header />
       <main>
         <section className="pedidos">
-          <table>
-            <thead>
-              <th>
-                <td>N OS</td>
-                <td>Empresa</td>
-              </th>
-            </thead>
-          </table>
+          <div className="pedidos-pesquisa">
+            <input
+              placeholder="Pesquise por OS, Empresa ou Nota"
+              type="search"
+              name="serch-pesq"
+              id=""
+            />
+            <a href="#">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/149/149852.png"
+                alt=""
+              />
+            </a>
+          </div>
+          <div className="pedidos-dados">
+            <table>
+              <thead>
+                <tr>
+                  <th>N OS</th>
+                  <th>Empresa</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </section>
       </main>
     </>
