@@ -1,29 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Templogo from "../assets/logo.svg";
 import { Header } from "../components/Header";
 import "./style.css";
 
-type PedidoProps = {
-  os: number;
-  empresa: { id: number; nome: string };
-  itens: { descricao: string; quantidade: number }[];
+const ulr_base = "http://localhost:8080";
+
+type OrdemServicoProps = {
+  id: number;
+  dataOrdem: string;
+  corporacao: { id: number; nome: string; tipoContrato: string };
+  nf: {
+    data: string;
+    numNota: string;
+    valorTotalNota: number;
+    valorTotalProdutos: number;
+  };
+  cliente: {
+    contato: { id: number; celular: string; telefone: string };
+    endereco: {
+      id: number;
+      rua: string;
+      casa: string;
+      cep: string;
+      bairro: string;
+    };
+    cpf: string;
+    nome: string;
+    sobrenome: string;
+  };
+  listaProdutos: {
+    quantidade: number;
+    produto: {
+      id: number;
+      codigo: string;
+      codBarras: string;
+      quantidade: number;
+    };
+  }[];
 };
 
-const pedidos: PedidoProps[] = [
-  {
-    os: 1,
-    empresa: { id: 1, nome: "aaa" },
-    itens: [
-      {
-        descricao: "item 1",
-        quantidade: 1,
-      },
-    ],
-  },
-];
-
 export const Home = () => {
-  const [pedido, setPedido] = useState<PedidoProps[]>();
+  const [pedidos, setPedidos] = useState<OrdemServicoProps>();
+
+  useEffect(() => {
+    fetch("http://localhost:8080/os/1", {
+      //mode: "no-cors",
+      headers: {
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Credentials": "true",
+      },
+    })
+      .then((r) => console.log(r))
+      .catch((e) => console.log("error", e));
+    // .then((r) => console.log(r));
+
+    console.log(pedidos);
+  }, []);
   return (
     <>
       <Header />
@@ -52,12 +85,15 @@ export const Home = () => {
                 </tr>
               </thead>
               <tbody>
-                {pedidos.map((valor, key) => (
-                  <tr key={key}>
-                    <td>{valor.os}</td>
-                    <td>{valor.empresa.nome}</td>
-                  </tr>
-                ))}
+                {/* {! pedidos typeof undefined > 0 
+                  pedidos.map((valor, key) => (
+                    <tr key={key}>
+                      <td>{valor.id}</td>
+                      <td>{valor.corporacao.nome}</td>
+                    </tr>
+                  ))} */}
+
+                {/* {!!!pedidos && <p>Ainda não existem pedidos</p>} */}
               </tbody>
             </table>
           </div>
