@@ -7,6 +7,9 @@ export const Header = () => {
         <p>Gerenciamento de Pedidos</p>
       </div>
       <div className="header-container">
+        <a className="sidenav-trigger" data-target="mobile-demo">
+          <i className="material-icons">menu</i>
+        </a>
         <svg
           className="logo"
           width="100%"
@@ -22,7 +25,7 @@ export const Header = () => {
           </g>
         </svg>
 
-        <div className="header-container__nav">
+        {/* <div className="header-container__nav">
           <nav>
             <ul>
               <li>
@@ -36,7 +39,7 @@ export const Header = () => {
               </li>
             </ul>
           </nav>
-        </div>
+        </div> */}
       </div>
     </header>
   );
