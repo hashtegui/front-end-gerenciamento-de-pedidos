@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Templogo from "../assets/logo.svg";
 import { Header } from "../../components/Header";
 import "./style.css";
+import { OsContext } from "../../providers/OsContext";
 
 const ulr_base = "http://localhost:8080";
 
-type OrdemServicoProps = {
+export type OrdemServicoProps = {
   id: number;
   dataOrdem: string;
   corporacao: { id: number; nome: string; tipoContrato: string };
@@ -34,15 +35,16 @@ type OrdemServicoProps = {
       id: number;
       codigo: string;
       codBarras: string;
-      quantidade: number;
     };
   }[];
 };
 
 export const Home = () => {
-  const [pedidos, setPedidos] = useState<OrdemServicoProps>();
-
   const [value, setValue] = useState("");
+
+  const osState = useContext(OsContext);
+
+  const { os, setOs } = osState;
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     fetch(`http://localhost:8080/os/${value}`, {
@@ -57,8 +59,7 @@ export const Home = () => {
         return r.json();
       })
       .then((r) => {
-        setPedidos(r);
-        console.log(pedidos);
+        setOs(r);
       })
       .catch((e) => console.log("error", e));
   };
@@ -93,10 +94,10 @@ export const Home = () => {
                 </tr>
               </thead>
               <tbody>
-                {!!pedidos && (
+                {!!os && (
                   <tr>
-                    <td>{pedidos.id}</td>
-                    <td>{pedidos.corporacao.nome}</td>
+                    <td>{os.id}</td>
+                    <td>{os.corporacao.nome}</td>
                   </tr>
                 )}
               </tbody>
