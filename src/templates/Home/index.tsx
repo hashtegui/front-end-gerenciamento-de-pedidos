@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Templogo from "../assets/logo.svg";
-import { Header } from "../components/Header";
+import { Header } from "../../components/Header";
 import "./style.css";
 
 const ulr_base = "http://localhost:8080";
@@ -42,21 +42,27 @@ type OrdemServicoProps = {
 export const Home = () => {
   const [pedidos, setPedidos] = useState<OrdemServicoProps>();
 
-  useEffect(() => {
-    fetch("http://localhost:8080/os/1", {
-      //mode: "no-cors",
+  const [value, setValue] = useState("");
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    fetch(`http://localhost:8080/os/${value}`, {
       headers: {
-        "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Origin": "http://localhost:8080",
       },
     })
-      .then((r) => console.log(r))
+      .then((r) => {
+        if (!r.ok) {
+          throw new Error("erro na requisicao");
+        }
+        return r.json();
+      })
+      .then((r) => {
+        setPedidos(r);
+        console.log(pedidos);
+      })
       .catch((e) => console.log("error", e));
-    // .then((r) => console.log(r));
+  };
 
-    console.log(pedidos);
-  }, []);
   return (
     <>
       <Header />
@@ -68,8 +74,10 @@ export const Home = () => {
               type="search"
               name="serch-pesq"
               id=""
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
             />
-            <a href="#">
+            <a href="#" onClick={handleClick}>
               <img
                 src="https://cdn-icons-png.flaticon.com/512/149/149852.png"
                 alt=""
@@ -85,15 +93,12 @@ export const Home = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* {! pedidos typeof undefined > 0 
-                  pedidos.map((valor, key) => (
-                    <tr key={key}>
-                      <td>{valor.id}</td>
-                      <td>{valor.corporacao.nome}</td>
-                    </tr>
-                  ))} */}
-
-                {/* {!!!pedidos && <p>Ainda não existem pedidos</p>} */}
+                {!!pedidos && (
+                  <tr>
+                    <td>{pedidos.id}</td>
+                    <td>{pedidos.corporacao.nome}</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
