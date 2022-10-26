@@ -1,15 +1,17 @@
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 import * as React from "react";
-import { Footer } from "../../components/Footer";
-import { Header } from "../../components/Header";
 import { OsContext } from "../../providers/OsContext";
-
-export const OrdemServico = () => {
+import Link from "next/link";
+import { useRouter } from "next/router";
+const OsPage = () => {
   const [value, setValue] = React.useState("");
 
   const osState = React.useContext(OsContext);
 
   const { os, setOs } = osState;
 
+  const router = useRouter();
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     fetch(`http://localhost:8080/os/${value}`, {
       headers: {
@@ -25,11 +27,12 @@ export const OrdemServico = () => {
       .then((r) => {
         setOs(r);
       })
-      .catch((e) => console.log("error", e));
+      .catch((e: Error) => console.log("error", e.message));
   };
+
   return (
     <>
-      <Header />
+      <Header></Header>
       <main>
         <section className="pedidos">
           <div className="pedidos-pesquisa">
@@ -42,10 +45,7 @@ export const OrdemServico = () => {
               onChange={(e) => setValue(e.target.value)}
             />
             <a href="#" onClick={handleClick}>
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/149/149852.png"
-                alt=""
-              />
+              <i className="small material-icons">search</i>
             </a>
           </div>
           <div className="pedidos-dados">
@@ -58,7 +58,7 @@ export const OrdemServico = () => {
               </thead>
               <tbody>
                 {!!os && (
-                  <tr>
+                  <tr onClick={() => router.push(`/os/${os.id}`)}>
                     <td>{os.id}</td>
                     <td>{os.corporacao.nome}</td>
                   </tr>
@@ -68,7 +68,9 @@ export const OrdemServico = () => {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer></Footer>
     </>
   );
 };
+
+export default OsPage;

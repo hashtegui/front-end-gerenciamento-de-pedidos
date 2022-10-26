@@ -1,17 +1,17 @@
-import "./style.css";
-
-export const Header = () => {
+import SidenavComp from "../Sidenav";
+import styles from "./Header.module.css";
+const Header = () => {
   return (
     <header>
-      <div className="header-titulo">
+      <div className={styles.titulo}>
         <p>Gerenciamento de Pedidos</p>
       </div>
-      <div className="header-container">
-        <a className="sidenav-trigger" data-target="mobile-demo">
-          <i className="material-icons">menu</i>
+      <div className={styles.container}>
+        <a href="#" data-target="slide-out" className="sidenav-trigger a">
+          <i className="medium material-icons">menu</i>
         </a>
         <svg
-          className="logo"
+          className={styles.logo}
           width="100%"
           viewBox="225.45385251595934 114.99999999999997 99.09229496808132 156.910703490273"
           preserveAspectRatio="none"
@@ -24,23 +24,9 @@ export const Header = () => {
             ></path>
           </g>
         </svg>
-
-        {/* <div className="header-container__nav">
-          <nav>
-            <ul>
-              <li>
-                <a href="#">Home</a>
-              </li>
-              <li>
-                <a href="#">Cadastrar</a>
-              </li>
-              <li>
-                <a href="#">Home</a>
-              </li>
-            </ul>
-          </nav>
-        </div> */}
       </div>
     </header>
   );
 };
+
+export default Header;

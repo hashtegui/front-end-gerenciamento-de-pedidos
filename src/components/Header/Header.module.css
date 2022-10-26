@@ -1,0 +1,37 @@
+.titulo {
+  background-color: #e03e52;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  height: 82px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  padding: 5px;
+  width: 100px;
+  height: 70px;
+}
+
+.a {
+  display: flex;
+  align-items: center;
+}

@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   front:
@@ -6,6 +6,6 @@ services:
     container_name: front-react
     entrypoint: ./.docker/entrypoint.sh
     ports:
-      - 3000:5173
+      - 3000:3000
     volumes:
       - .:/home/node/app

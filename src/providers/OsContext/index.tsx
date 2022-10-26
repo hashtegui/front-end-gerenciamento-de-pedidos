@@ -1,14 +1,18 @@
 import * as React from "react";
 import { IOSProps } from "../../@types/os";
 
-interface IOsProps {
+interface OsProps {
   os: IOSProps | null;
   setOs: React.Dispatch<React.SetStateAction<IOSProps | null>>;
 }
 
-export const OsContext = React.createContext<IOsProps>({} as IOsProps);
+type Props = {
+  children?: React.ReactNode;
+};
 
-export const OsProvider: React.FC<React.ReactNode> = ({ children }) => {
+export const OsContext = React.createContext<OsProps>({} as OsProps);
+
+export const OsProvider: React.FC<Props> = ({ children }) => {
   const [os, setOs] = React.useState<IOSProps | null>(null);
 
   return (
