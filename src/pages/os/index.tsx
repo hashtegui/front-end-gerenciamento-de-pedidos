@@ -4,6 +4,7 @@ import * as React from "react";
 import { OsContext } from "../../providers/OsContext";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 const OsPage = () => {
   const [value, setValue] = React.useState("");
 
@@ -32,6 +33,9 @@ const OsPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Gerenciamento de OS</title>
+      </Head>
       <Header></Header>
       <main>
         <section className="pedidos">
