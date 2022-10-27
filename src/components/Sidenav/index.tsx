@@ -5,11 +5,11 @@ const SidenavComp = () => {
   return (
     <ul
       id="slide-out"
-      className="sidenav sidenav-fixed collapsible collapsible-accordion"
+      className="sidenav sidenav-fixed collapsible collapsible-accordion sidenav-font"
     >
-      <li>
+      <li className="center-align">
         <svg
-          className="logo logo-sidenav"
+          className="logo logo-sidenav "
           width="100%"
           viewBox="225.45385251595934 114.99999999999997 99.09229496808132 156.910703490273"
           preserveAspectRatio="none"
@@ -24,25 +24,39 @@ const SidenavComp = () => {
         </svg>
       </li>
       <li>
-        <Link href="/">Home</Link>
+        <Link className="waves-effect waves-teal" href="/">
+          Home
+        </Link>
       </li>
       <li>
-        <Link href="/os">Gerenciamento de OS</Link>
+        <Link className="waves-effect waves-teal" href="/os">
+          Gerenciamento de OS
+        </Link>
       </li>
-      {/* <li>
-        <div className="divider"></div>
-      </li> */}
-      {/* 
       <li>
-        <a className="subheader">Subheader</a>
-      </li> */}
-      <li className="bold">
-        <a className="collapsible-header waves-effect waves-teal">Motorista</a>
+        <a
+          className="waves-effect waves-teal collapsible-header"
+          style={{ padding: "0 32px" }}
+        >
+          Motorista
+        </a>
         <div className="collapsible-body">
           <ul>
-            <li>a</li>
-            <li>b</li>
-            <li>c</li>
+            <li className="">
+              <a className="waves-effect" style={{ padding: "0px 43px" }}>
+                Relatório
+              </a>
+            </li>
+            <li>
+              <a className="waves-effect" style={{ padding: "0px 43px" }}>
+                b
+              </a>
+            </li>
+            <li>
+              <a className="waves-effect" style={{ padding: "0px 43px" }}>
+                c
+              </a>
+            </li>
           </ul>
         </div>
       </li>

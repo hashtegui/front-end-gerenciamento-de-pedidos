@@ -6,6 +6,15 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+header,
+main,
+footer {
+  padding-left: 300px;
+}
+#trigger {
+  display: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -23,6 +32,7 @@ a {
 
 .pedidos {
   display: flex;
+  width: auto;
   flex-direction: column;
   align-items: center;
 }
@@ -48,6 +58,23 @@ a {
   width: 75%;
 }
 
+.sidenav-font {
+  color: black;
+}
+
+.sidenav-item {
+  padding: 0 16px;
+}
+
+.collapsible-item {
+  padding: 0px 16px;
+}
+
+.table {
+  margin: 15px 0px;
+  background-color: #ee6e73;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -55,5 +82,16 @@ a {
   body {
     color: white;
     background: black;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  header,
+  main,
+  footer {
+    padding-left: 0;
+  }
+  #trigger {
+    display: block;
   }
 }

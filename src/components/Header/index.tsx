@@ -8,7 +8,9 @@ const Header = () => {
       </div>
       <div className={styles.container}>
         <a href="#" data-target="slide-out" className="sidenav-trigger a">
-          <i className="medium material-icons">menu</i>
+          <i className="medium material-icons" id="trigger">
+            menu
+          </i>
         </a>
         <svg
           className={styles.logo}

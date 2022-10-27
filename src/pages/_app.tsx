@@ -1,5 +1,6 @@
 import "../../styles/globals.css";
 import "materialize-css/dist/css/materialize.css";
+import { AutoInit } from "materialize-css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { OsProvider } from "../providers/OsContext";
