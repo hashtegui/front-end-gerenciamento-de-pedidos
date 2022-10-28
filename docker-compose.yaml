@@ -5,7 +5,15 @@ services:
     build: .
     container_name: front-react
     entrypoint: ./.docker/entrypoint.sh
+    depends_on:
+      - back
     ports:
       - 3000:3000
     volumes:
       - .:/home/node/app
+  back:
+    image: tcc/backend
+    container_name: backend
+    command: ["java", "-jar", "app.jar"]
+    ports:
+      - 8080:8080
