@@ -2,17 +2,15 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import * as React from "react";
 import { OsContext } from "../../providers/OsContext";
-import { useRouter } from "next/router";
-
 import Head from "next/head";
+import OS from "../../components/OsComponent";
+
 const OsPage = () => {
   const [value, setValue] = React.useState("");
   const osState = React.useContext(OsContext);
   const { os, setOs } = osState;
-  const router = useRouter();
 
   const handleClick = () => {
-    console.log(value);
     if (value.length > 0) {
       fetch(`http://192.168.0.39:8080/os/${value}`, {})
         .then((r) => {
@@ -70,17 +68,7 @@ const OsPage = () => {
                   <th>Status</th>
                 </tr>
               </thead>
-              <tbody>
-                {!!os && (
-                  <tr onClick={() => router.push(`/os/${os.id}`)}>
-                    <td>{os.id}</td>
-                    <td>{os.corporacao.nome}</td>
-                    <td>{os.nf.numNota}</td>
-                    <td>{os.dataOrdem}</td>
-                    <td>P</td>
-                  </tr>
-                )}
-              </tbody>
+              <tbody>{Object.keys(os).length > 0 && <OS />}</tbody>
             </table>
           </div>
         </section>
