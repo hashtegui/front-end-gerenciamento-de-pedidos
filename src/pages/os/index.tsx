@@ -12,24 +12,27 @@ const OsPage = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    fetch(`http://192.168.0.39:8080/os/${value}`, {})
-      .then((r) => {
-        setValue("");
-        if (!r.ok) {
-          M.toast({
-            html: "Ordem de Serviço não encontrada",
-            classes: "red",
-          });
-          throw new Error("erro na requisicao");
-        }
-        return r.json();
-      })
-      .then((r) => {
-        setOs(r);
-      })
-      .catch((e: Error) => console.log("error", e.message));
+    console.log(value);
+    if (value.length > 0) {
+      fetch(`http://192.168.0.39:8080/os/${value}`, {})
+        .then((r) => {
+          setValue("");
+          if (!r.ok) {
+            M.toast({
+              html: "Ordem de Serviço não encontrada",
+              classes: "red",
+            });
+            throw new Error("erro na requisicao");
+          }
+          return r.json();
+        })
+        .then((r) => {
+          setOs(r);
+        })
+        .catch((e: Error) => console.log("error", e.message));
+    } else
+      M.toast({ html: "Insira um valor antes de pesquisar", classes: "red" });
   };
-
   return (
     <>
       <Head>
@@ -45,7 +48,7 @@ const OsPage = () => {
               name="serch-pesq"
               id=""
               onKeyUp={(e) => {
-                if (e.key === "Enter" && value.length > 0) {
+                if (e.key === "Enter") {
                   handleClick();
                 }
               }}
@@ -64,6 +67,7 @@ const OsPage = () => {
                   <th>Empresa</th>
                   <th>N Nota</th>
                   <th>Data Ordem</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -73,6 +77,7 @@ const OsPage = () => {
                     <td>{os.corporacao.nome}</td>
                     <td>{os.nf.numNota}</td>
                     <td>{os.dataOrdem}</td>
+                    <td>P</td>
                   </tr>
                 )}
               </tbody>
