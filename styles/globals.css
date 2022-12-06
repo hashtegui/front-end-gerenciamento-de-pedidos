@@ -72,17 +72,19 @@ a {
 
 .table {
   margin: 15px 0px;
-  background-color: #ee6e73;
+  background-color: #05e0d5;
+}
+.form-login {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.login {
+  width: 500px;
+  height: 400px;
 }
 
 @media only screen and (max-width: 992px) {

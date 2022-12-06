@@ -4,15 +4,22 @@ import * as React from "react";
 import { OsContext } from "../../providers/OsContext";
 import Head from "next/head";
 import OS from "../../components/OsComponent";
+import { UserContext } from "../../providers/UserContext";
 
 const OsPage = () => {
   const [value, setValue] = React.useState("");
   const osState = React.useContext(OsContext);
+  const userState = React.useContext(UserContext);
+  const { user } = userState;
   const { os, setOs } = osState;
 
   const handleClick = () => {
+    const headers: HeadersInit = {
+      Authorization: `Bearer ${user.acesstoken}`,
+    };
+
     if (value.length > 0) {
-      fetch(`http://192.168.0.39:8080/os/${value}`, {})
+      fetch(`http://192.168.0.39:8080/os/${value}`, { headers })
         .then((r) => {
           setValue("");
           if (!r.ok) {
