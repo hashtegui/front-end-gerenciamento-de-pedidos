@@ -12,9 +12,7 @@ export default function Home() {
   const [username, setUserName] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 
-  const handleLogin = (
-    e: React.FormEvent<HTMLFormElement | HTMLButtonElement>
-  ) => {
+  const handleLogin = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const body = {
       username,
@@ -43,29 +41,31 @@ export default function Home() {
       <h1 className="">Login - Entregaz</h1>
       <div className="login">
         <div>
-          <form action="" onSubmit={handleLogin}>
-            <input
-              type="text"
-              placeholder="Login"
-              className="validate"
-              name="username"
-              value={username}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button
-              onSubmit={handleLogin}
-              className="waves-effect waves-light btn-large"
-            >
-              Button
-            </button>
-          </form>
+          <label htmlFor="">Usuario</label>
+          <input
+            type="text"
+            className="validate"
+            name="username"
+            value={username}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
+        <div>
+          <label htmlFor="">Senha</label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <button
+          onSubmit={handleLogin}
+          className="waves-effect waves-light btn black-text"
+        >
+          Entrar
+        </button>
       </div>
     </div>
   );

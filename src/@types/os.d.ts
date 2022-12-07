@@ -18,8 +18,7 @@ interface Cliente {
   nome: string;
   sobrenome: string;
 }
-
-interface Produto {
+export interface Produto {
   quantidade: number;
   produto: {
     id: number;

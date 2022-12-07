@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { OsContext } from "../../providers/OsContext";
+import { IOSProps, Produto } from "../../@types/os";
 
 const OsIdPage = () => {
   const router = useRouter();
@@ -10,6 +11,16 @@ const OsIdPage = () => {
 
   console.log(router.query);
   const { os, setOs } = React.useContext(OsContext);
+
+  const Item: React.FC<Produto> = (item: Produto) => {
+    return (
+      <tr>
+        <td>{item.produto.codigo}</td>
+        <td>{item.produto.codBarras}</td>
+        <td>{item.quantidade}</td>
+      </tr>
+    );
+  };
 
   return (
     <>
@@ -61,6 +72,20 @@ const OsIdPage = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="card">
+              <table className="table-hover">
+                <tr>
+                  <th>Codigo</th>
+                  <th>Cod Bárras</th>
+                  <th>Quantidade</th>
+                </tr>
+                <tbody>
+                  {os.listaProdutos.map((item) => (
+                    <Item {...item} />
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         )}
